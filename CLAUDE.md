@@ -4,16 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-<!-- プロジェクトの概要を記載する -->
+dev-workflow スキル（implement-plan, fix-review, review 等）のE2Eテスト用サンドボックス。最小限の Go パッケージで構成される。
 
 ## Development Commands
 
-<!-- 開発に必要なコマンドを記載する -->
+```bash
+# ビルド
+go build ./...
+
+# テスト
+go test ./...
+
+# フォーマット
+gofmt -w .
+```
 
 ## Architecture
 
-For architecture details, see @.claude/rules/architecture.md
+単一パッケージ (`package sandbox`) のフラットな構成。モジュールやサブパッケージはない。
 
 ## Coding Guidelines
 
-For coding conventions, see @.claude/rules/coding.md
+- 既存の関数（`Greet`, `Farewell` 等）と同じパターンに従う
+- テストはテーブルドリブンテスト（`[]struct` + `t.Run`）で書く
+- エラーを返す関数は `(T, error)` のシグネチャにする
