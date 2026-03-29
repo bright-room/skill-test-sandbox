@@ -3,9 +3,19 @@ package sandbox
 import "testing"
 
 func TestDivide(t *testing.T) {
-	got := Divide(10, 2)
+	got, err := Divide(10, 2)
+	if err != nil {
+		t.Fatalf("Divide(10, 2) returned unexpected error: %v", err)
+	}
 	if got != 5 {
 		t.Errorf("Divide(10, 2) = %d, want 5", got)
+	}
+}
+
+func TestDivideByZero(t *testing.T) {
+	_, err := Divide(10, 0)
+	if err == nil {
+		t.Error("Divide(10, 0) expected error, got nil")
 	}
 }
 
